@@ -1,0 +1,4 @@
+rootProject.name = 'java-design-pattern'
+include 'strategy'
+findProject(':strategy')?.name = 'java-design-pattern'
+
