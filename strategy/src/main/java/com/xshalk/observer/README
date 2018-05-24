@@ -1,0 +1,6 @@
+
+观察者模式
+一批观察者通过订阅某个对象，但对象发生变化时，会通知这些对象。
+
+The Observer Pattern defines a one-to-many dependency between objects so that when one object changes state,
+ all of its dependents are notified and updated automatically
