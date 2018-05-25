@@ -1,0 +1,6 @@
+抽象工厂
+
+定义接口创建一个产品家族，接口的具体实现去选择某个家族具体的产品。
+
+The Abstract Factory Pattern provides an interface for creating families of related or dependent objects
+without specifying their concrete classes.
