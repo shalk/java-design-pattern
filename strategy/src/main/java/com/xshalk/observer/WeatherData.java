@@ -1,15 +1,16 @@
 package com.xshalk.observer;
 
+import java.util.Observable;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class WeatherData implements Subject {
-    private CopyOnWriteArrayList<Observer> observerList;
+public class WeatherData extends Observable {
+//    private CopyOnWriteArrayList<Observer> observerList;
     private float temperature;
     private float humidity;
     private float pressure;
 
     public WeatherData() {
-        observerList = new CopyOnWriteArrayList<>();
+//        observerList = new CopyOnWriteArrayList<>();
     }
 
     public float getTemperature() {
@@ -25,6 +26,7 @@ public class WeatherData implements Subject {
     }
 
     public void measurementsChanged() {
+        setChanged();
         notifyObservers();
     }
 
@@ -35,20 +37,20 @@ public class WeatherData implements Subject {
         measurementsChanged();
     }
 
-    @Override
-    public void registerObserver(Observer observer) {
-        observerList.add(observer);
-    }
 
-    @Override
-    public void removeObserver(Observer observer) {
-        observerList.remove(observer);
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (Observer o : observerList) {
-            o.update(getTemperature(), getHumidity(), getPressure());
-        }
-    }
+//    @Override
+//    public void registerObserver(Observer observer) {
+//        observerList.add(observer);
+//    }
+//
+//    @Override
+//    public void removeObserver(Observer observer) {
+//        observerList.remove(observer);
+//    }
+//    @Override
+//    public void notifyObservers() {
+//        for (Observer o : observerList) {
+//            o.update(getTemperature(), getHumidity(), getPressure());
+//        }
+//    }
 }

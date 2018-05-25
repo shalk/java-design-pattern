@@ -4,3 +4,8 @@
 
 The Observer Pattern defines a one-to-many dependency between objects so that when one object changes state,
  all of its dependents are notified and updated automatically
+
+
+ 原则：
+ 1. 松耦合原则
+ 2.

@@ -1,0 +1,9 @@
+装饰器模式
+
+把一些功能动态的委托给之类，使得子类进行灵活的扩展
+
+装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。
+这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。
+
+The Decorator Pattern attaches additional responsibilities to an object dynamically.
+Decorators provide a flexible alternative to subclassing for extending functionality
