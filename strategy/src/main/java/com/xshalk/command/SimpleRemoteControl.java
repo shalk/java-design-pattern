@@ -2,9 +2,10 @@ package com.xshalk.command;
 
 public class SimpleRemoteControl {
 
-    public static final int SIZE = 7;
-    Command[] onCommands;
-    Command[] offCommands;
+    private static final int SIZE = 7;
+    private Command[] onCommands;
+    private Command[] offCommands;
+    private Command undoCommand;
 
     public SimpleRemoteControl() {
         onCommands = new Command[SIZE];
@@ -14,6 +15,7 @@ public class SimpleRemoteControl {
             onCommands[i] = noCommand;
             offCommands[i] = noCommand;
         }
+        undoCommand = new NoCommand();
     }
 
     public void setCommand(int slotNum, Command onCommand, Command offCommand) {
@@ -23,10 +25,16 @@ public class SimpleRemoteControl {
 
     public void onButtonWasPressed(int slotNum) {
         onCommands[slotNum].execute();
+        undoCommand = onCommands[slotNum];
     }
 
     public void offButtonWasPressed(int slotNum) {
         offCommands[slotNum].execute();
+        undoCommand = offCommands[slotNum];
+    }
+
+    public void undoButtonWasPushed() {
+        undoCommand.undo();
     }
 
     @Override
@@ -37,6 +45,7 @@ public class SimpleRemoteControl {
             buff.append("[slot " + i + "] " + onCommands[i].getClass().getSimpleName()
                     + " " + offCommands[i].getClass().getSimpleName() + "\n");
         }
+       buff.append("[undo]" + undoCommand.getClass().getName() + "\n");
         return buff.toString();
     }
 }
