@@ -1,0 +1,13 @@
+命令模式
+
+将行为包装成命令给调用者， 调用者不需要知道接收者是谁，直接执行即可。
+
+
+ConcoreteCommand -> Command
+Invoker -> 接收Command，并执行Command
+Reciever 封装在特定的command里，执行具体的动作
+
+Client， 创建Command（并把Recierver 放入Command），把command给invoker, invoker执行。
+
+The Command Pattern encapsulates a request as an object, thereby letting you parameterize other objects
+with different requests, queue or log requests, and support undoable operations
