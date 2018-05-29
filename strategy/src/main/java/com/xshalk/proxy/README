@@ -1,2 +1,52 @@
-RMI编写步骤
+RMI
+java remote method invocation 远程方法调用
 
+使得jvm可以调用远程对象的方法，远程对象在另一个jvm上。
+
+角色：
+1. client 调用 远程对象的方法。
+2. server 提供远程对象接口，并提供相关实现。
+3. register 注册服务器，提供外部接口的清单，绑定等功能
+
+
+角色的流程如下：
+1. register服务器先启动，默认服务清单为空
+2. server提供了接口A以及实现A_impl,需要把接口提供出来，server绑定register
+3. client 向register通讯，获得接口对象，对接口对象执行操作即可。
+
+ 进一步看类图:
+
+在server端有3个类
+
+MyService: 接口
+MyServiceImpl: 实现
+Myservice_skel: 用于通讯
+Server: 用于绑定
+
+在client端有2个类
+Client:  进行连接获得对象
+Myservice: 接口
+Myservice_stub: 实现接口，MyserviceImpl的代理
+
+
+整个步骤如下：
+1. 写代码
+2. 启动register，启动Server，启动client
+
+具体一点：
+1. 先写接口和实现，MyService MyServiceImpl
+2. 公开接口，有两种方法，一种是extends UnicastRemoteObject 一种是 用 Remote.exportObject
+3. 调整接口，throw RemoteException
+4. 调整接口返回值，都要是基本类型，或者实现了接口Serilizable
+5. 写Server类，创建MyserviceImpl 对象， 绑定register, Naming.rebind 或者LocalRegister.getRegister()
+6. 启动rmiregister
+7. 启动Server类
+8. 写Client，即 Naming.lookup() 去查询相应服务，会获得stub对象
+9 启动client
+
+注：
+1. java1.8之后 stub和skel不用自己生成。
+2. rmiregister 可以用 LocalRegister.createRegister替代，生产环境建议用rmiregister
+3. 接口返回值注意序列化
+4. Service在创建MyServiceImpl之前，配置java.rmi.server.hostname, 使得公开接口能配置成相应的ip
+5. 就复制接口到client
