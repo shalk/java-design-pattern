@@ -1,3 +1,9 @@
 
 状态模式 State Pattern
 
+The State Pattern allows an object to alter its behavior
+when its internal state changes. The object will appear to
+change its class.
+
+状态模式允许对象根据内部的状态，改变行为。
+对象需要改变类。
